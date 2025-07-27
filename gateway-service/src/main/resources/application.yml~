@@ -1,0 +1,25 @@
+# ce fichier yml c'est pour configurer la gateway ! (c'est une configuration statique, parce que dans ce cas on connais l'adresse de chaque microservice !!!!!)
+# Ce fichier YAML est le fichier de configuration de Spring Cloud Gateway. Il permet de définir les routes de la passerelle (gateway) vers les différents microservices de ton application.
+
+# on peut le faire cette configuration dans application.properties :
+# spring.cloud.gateway.mvc.routes[0].id=r1
+# spring.cloud.gateway.mvc.routes[0].uri=http://localhost:8081
+# spring.cloud.gateway.mvc.routes[0].predicates[0]=Path=/api/customers/**
+#
+# spring.cloud.gateway.mvc.routes[1].id=r2
+# spring.cloud.gateway.mvc.routes[1].uri=http://localhost:8082
+# spring.cloud.gateway.mvc.routes[1].predicates[0]=Path=/api/products/**
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: r1
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            Path=/api/customers/**
+        - id: r2
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            Path=/api/products/**
