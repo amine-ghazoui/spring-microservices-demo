@@ -2,6 +2,7 @@ package org.example.billingservice.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.billingservice.model.Product;
 
 @Entity
 @Data
@@ -15,4 +16,6 @@ public class ProductItem {
     private double price;
     @ManyToOne
     private Bill bill;
+    @Transient
+    private Product product;
 }
